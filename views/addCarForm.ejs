@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Add Car Form</title>
+    </head>
+    <body>
+        <h2><%= title %></h2>
+        <form method="POST" action="/add">
+            <div>
+                <label for="make">Make:</label>
+                <input name="make" placeholder="make">
+            </div>
+            <div>
+                <label for="model">Model:</label>
+                <input name="model" placeholder="model">
+            </div>
+            <div>
+                <label for="year">Year:</label>
+                <input name="year" placeholder="year">
+            </div>
+            <div>
+                <label for="origins">Origins: </label>
+                <select id="origins" name="origins">
+                    <% origins.forEach(originObj => { %>
+                        <option value="<%= originObj.origin %>">
+                            <%= originObj.origin %>
+                        </option>
+                    <% }) %>  
+                </select>
+            </div>
+            <div>
+                <label for="manufacturers">Manufacturers</label>
+                <select id="manufacturers" name="manufacturers">
+                    <% manufacturers.forEach(manufacturerObj => { %>
+                        <option value="<%= manufacturerObj.manufacturer %>">
+                            <%= manufacturerObj.manufacturer %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

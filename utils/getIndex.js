@@ -1,0 +1,2 @@
+function getIndex(value, array) {
+}
