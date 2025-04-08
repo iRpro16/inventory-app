@@ -19,4 +19,8 @@ indexRouter.get("/view/:id", carsController.getDisplayCarsFromCategory);
 // View car details 
 indexRouter.get("/view-car/:id", carsController.getDisplayCarDetails);
 
+// Edit car details
+indexRouter.get("/edit-car/:id", carsController.getEditForm);
+indexRouter.post("/edit-car/:id", carsController.postEditForm);
+
 module.exports = indexRouter;

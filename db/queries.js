@@ -55,7 +55,7 @@ async function getAllCarsFromCategory(manufacturer_id) {
     return rows;
 }
 
-async function getViewCarDetails(car_id) {
+async function viewCarDetails(car_id) {
     let query = `
     SELECT
         cars.id,
@@ -77,6 +77,20 @@ async function getViewCarDetails(car_id) {
     return rows;
 }
 
+async function updateCarDetails(car_id, make, model, year, originId, manufacturerId) {
+    let query = `
+        UPDATE "cars"
+        SET make = $1, 
+            model = $2,
+            year = $3,
+            origin_id = $4,
+            manufacturer_id = $5
+        WHERE cars.id = $6;
+    `
+    const values = [make, model, year, originId, manufacturerId, car_id];
+    await pool.query(query, values);
+}
+
 
 module.exports= {
     getAllOrigins,
@@ -84,5 +98,6 @@ module.exports= {
     insertCar,
     insertManufacturer,
     getAllCarsFromCategory,
-    getViewCarDetails
+    viewCarDetails,
+    updateCarDetails
 }

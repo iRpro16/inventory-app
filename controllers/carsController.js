@@ -63,10 +63,40 @@ async function getDisplayCarsFromCategory(req, res) {
 
 async function getDisplayCarDetails(req, res) {
     const { id } = req.params;
-    const car = await db.getViewCarDetails(id);
+    const car = await db.viewCarDetails(id);
     res.render('viewCar', {
-        car: car
+        car: car[0]
     })
+}
+
+async function getEditForm(req, res) {
+    const { id } = req.params;
+    const car = await db.viewCarDetails(id);
+    const origins = await db.getAllOrigins();
+    const manufacturers = await db.getAllManufacturers();
+    res.render("editCarForm", {
+        title: "Edit car",
+        car: car[0],
+        origins: origins,
+        manufacturers: manufacturers
+    })
+}
+
+async function postEditForm(req, res) {
+    const { id } = req.params;
+    const origins = await db.getAllOrigins();
+    const manufacturers = await db.getAllManufacturers();
+    const origin_id = origins.find(e => e.origin === req.body.origins).id;
+    const manufacturer_id = manufacturers.find(e => e.manufacturer === req.body.manufacturers).id; 
+    await db.updateCarDetails(
+        id,
+        req.body.make,
+        req.body.model,
+        req.body.year,
+        origin_id,
+        manufacturer_id
+    )
+    res.redirect(`/view/${manufacturer_id}`);
 }
 
 
@@ -78,5 +108,7 @@ module.exports = {
     getDisplayCarsFromCategory,
     getAddCategoryForm,
     postAddCategoryForm,
-    getDisplayCarDetails
+    getDisplayCarDetails,
+    getEditForm,
+    postEditForm
 }
