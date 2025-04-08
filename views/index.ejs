@@ -4,15 +4,14 @@
     </head>
     <body>
         <ul>
-            <% cars.forEach((car) => { %>
+            <% manufacturers.forEach((manufacturer) => { %>
                 <li>
-                    <%= car.make %>,
-                    <%= car.model %>,
-                    <%= car.year %>,
-                    <%= car.origin %>,
-                    <%= car.manufacturer %>
+                    <%= manufacturer.manufacturer %>
+                    <a href="/view/<%= manufacturer.id %>">view</a>
                 </li>
             <% }) %>
         </ul>
+        <a href="/add-car">Add an item</a>
+        <a href="/add-category">Add a category</a>
     </body>
 </html>

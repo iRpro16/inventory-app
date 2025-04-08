@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Add Category Form</title>
+    </head>
+    <body>
+        <h2><%= title %></h2>
+        <form method="POST" action="/add-category">
+            <div>
+                <label for="manufacturer">Manufacturer:</label>
+                <input type="text" name="manufacturer" required>
+            </div>
+            <button type="submit">Add category</button>
+        </form>
+        <a href="/">Back to home</a>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>View cars</title>
+    </head>
+    <body>
+        <ul>
+            <li><%= car[0].make %></li>
+            <li><%= car[0].model %></li>
+            <li><%= car[0].year %></li>
+            <li><%= car[0].origin %></li>
+            <li><%= car[0].manufacturer %></li>
+        </ul>
+        <a href="/view/<%= car[0].manufacturer_id %>">Go back</a>
+    </body>
+</html>

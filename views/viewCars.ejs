@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>All cars</title>
+    </head>
+    <body>
+        <ul>
+            <% cars.forEach(car => { %>
+                <li>
+                    <%= car.make %>
+                    <%= car.model %>,
+                    <a href="/view-car/<%= car.id %>">view</a>
+                </li>
+            <% }) %>
+        </ul>
+        <a href="/">Back to home</a>
+    </body>
+</html>

@@ -1,23 +1,5 @@
 const pool = require("./pool");
 
-async function getAllCars() {
-    let query = `
-        SELECT
-            cars.make, 
-            cars.model, 
-            cars.year, 
-            origins.origin,
-            manufacturers.manufacturer
-        FROM cars
-        INNER JOIN origins 
-            ON cars.origin_id = origins.id
-        INNER JOIN manufacturers 
-            ON cars.manufacturer_id = manufacturers.id;
-    `
-    const { rows } = await pool.query(query);
-    return rows;
-}
-
 async function getAllOrigins() {
     let query = `
         SELECT * FROM origins;
@@ -44,15 +26,63 @@ async function insertCar(make, model, year, originId, manufacturerId) {
     await pool.query(query, values);
 }
 
+async function insertManufacturer(manufacturer) {
+    let query = `
+        INSERT INTO manufacturers (manufacturer)
+        VALUES ($1) RETURNING *;
+    `
 
-module.exports= {
-    getAllCars,
-    getAllOrigins,
-    getAllManufacturers,
-    insertCar
+    await pool.query(query, [manufacturer]);
 }
 
-/**
- * Have search queries
- * Add, delete, edit queries
- */
+async function getAllCarsFromCategory(manufacturer_id) {
+    let query = `
+        SELECT
+            cars.id,
+            cars.make, 
+            cars.model, 
+            cars.year, 
+            origins.origin,
+            manufacturers.manufacturer
+        FROM cars
+        INNER JOIN origins 
+            ON cars.origin_id = origins.id
+        INNER JOIN manufacturers 
+            ON cars.manufacturer_id = manufacturers.id
+        WHERE cars.manufacturer_id = ${manufacturer_id};
+    `
+    const { rows } = await pool.query(query);
+    return rows;
+}
+
+async function getViewCarDetails(car_id) {
+    let query = `
+    SELECT
+        cars.id,
+        cars.make, 
+        cars.model, 
+        cars.year, 
+        origins.origin,
+        manufacturers.manufacturer,
+        manufacturers.id AS "manufacturer_id"
+    FROM cars
+    INNER JOIN origins 
+        ON cars.origin_id = origins.id
+    INNER JOIN manufacturers 
+        ON cars.manufacturer_id = manufacturers.id
+    WHERE cars.id = ${car_id};
+    `
+
+    const { rows } = await pool.query(query);
+    return rows;
+}
+
+
+module.exports= {
+    getAllOrigins,
+    getAllManufacturers,
+    insertCar,
+    insertManufacturer,
+    getAllCarsFromCategory,
+    getViewCarDetails
+}
