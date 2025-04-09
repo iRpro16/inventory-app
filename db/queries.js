@@ -49,9 +49,9 @@ async function getAllCarsFromCategory(manufacturer_id) {
             ON cars.origin_id = origins.id
         INNER JOIN manufacturers 
             ON cars.manufacturer_id = manufacturers.id
-        WHERE cars.manufacturer_id = ${manufacturer_id};
+        WHERE cars.manufacturer_id = $1;
     `
-    const { rows } = await pool.query(query);
+    const { rows } = await pool.query(query, [manufacturer_id]);
     return rows;
 }
 
@@ -70,10 +70,10 @@ async function viewCarDetails(car_id) {
         ON cars.origin_id = origins.id
     INNER JOIN manufacturers 
         ON cars.manufacturer_id = manufacturers.id
-    WHERE cars.id = ${car_id};
+    WHERE cars.id = $1;
     `
 
-    const { rows } = await pool.query(query);
+    const { rows } = await pool.query(query, [car_id]);
     return rows;
 }
 
@@ -91,6 +91,14 @@ async function updateCarDetails(car_id, make, model, year, originId, manufacture
     await pool.query(query, values);
 }
 
+async function deleteCategory(manufacturer_id) {
+    let query = `
+        DELETE FROM manufacturers
+        WHERE id = $1;
+    `
+    await pool.query(query, [manufacturer_id]);
+}
+
 
 module.exports= {
     getAllOrigins,
@@ -99,5 +107,6 @@ module.exports= {
     insertManufacturer,
     getAllCarsFromCategory,
     viewCarDetails,
-    updateCarDetails
+    updateCarDetails,
+    deleteCategory
 }

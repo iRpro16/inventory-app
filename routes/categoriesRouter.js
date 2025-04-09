@@ -9,4 +9,7 @@ categoriesRouter.get("/", categoriesController.getCategories);
 categoriesRouter.get("/add-category", categoriesController.getAddCategory);
 categoriesRouter.post("/add-category", categoriesController.postAddCategory);
 
+// Delete category and all its cars
+categoriesRouter.get("/delete/:id", categoriesController.getDeleteCategory);
+
 module.exports = categoriesRouter;

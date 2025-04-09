@@ -2,23 +2,26 @@ const { Client } = require("pg");
 require('dotenv').config();
 
 const SQL = `
-    CREATE TABLE IF NOT EXISTS cars (
-        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        make VARCHAR (255),
-        model VARCHAR (255),
-        year INT,
-        origin_id INT,
-        manufacturer_id INT
-    );
-
-    CREATE TABLE IF NOT EXISTS origins (
-        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        origin VARCHAR (255)
-    );
-
     CREATE TABLE IF NOT EXISTS manufacturers (
-        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        manufacturer VARCHAR (255)
+        id SERIAL PRIMARY KEY,
+        manufacturer VARCHAR (255) NOT NULL
+    );
+    
+    CREATE TABLE IF NOT EXISTS origins (
+        id SERIAL PRIMARY KEY,
+        origin VARCHAR (255) NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS cars (
+        id SERIAL PRIMARY KEY,
+        make VARCHAR (255) NOT NULL,
+        model VARCHAR (255) NOT NULL,
+        year INT NOT NULL,
+        origin_id INT NOT NULL,
+        manufacturer_id INT NOT NULL,
+        FOREIGN KEY(manufacturer_id)
+            REFERENCES manufacturers(id)
+            ON DELETE CASCADE
     );
 `
 

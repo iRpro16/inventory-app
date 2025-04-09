@@ -1,6 +1,5 @@
 const db = require("../db/queries");
 
-
 // Add car - GET method
 async function getAddCar(req, res) {
     const origins = await db.getAllOrigins();

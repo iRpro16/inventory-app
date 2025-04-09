@@ -21,8 +21,16 @@ async function getCategories(req, res) {
     })
 }
 
+// Delete category - GET method
+async function getDeleteCategory(req, res) {
+    const { id } = req.params;
+    await db.deleteCategory(id);
+    res.redirect("/");
+}
+
 module.exports = {
     getAddCategory,
     postAddCategory,
-    getCategories
+    getCategories,
+    getDeleteCategory
 }
