@@ -1,16 +1,19 @@
 const db = require("../db/queries");
 
-async function getAddCarForm(req, res) {
+
+// Add car - GET method
+async function getAddCar(req, res) {
     const origins = await db.getAllOrigins();
     const manufacturers = await db.getAllManufacturers();
-    res.render("addCarForm", {
+    res.render("cars/add", {
         title: "Add car",
         origins: origins,
         manufacturers: manufacturers
     })
 }
 
-async function postAddCarForm(req, res) {
+// Add car - POST method
+async function postAddCar(req, res) {
     const origins = await db.getAllOrigins();
     const manufacturers = await db.getAllManufacturers();
     const origin_id = origins.find(e => e.origin === req.body.origins).id;
@@ -26,55 +29,41 @@ async function postAddCarForm(req, res) {
     res.redirect("/");
 }
 
-async function getAddCategoryForm(req, res) {
-    res.render("addCategoryForm", {
-        title: "Add category"
-    })
-}
-
-async function postAddCategoryForm(req, res) {
-    db.insertManufacturer(req.body.manufacturer);
-    res.redirect("/");
-}
-
+// Display car - GET method
 async function getDisplayCar(req, res) {
     const { id } = req.params;
     const cars = await db.getAllCars();
     const carObj = cars.find(e => e.id == id);
-    res.render("viewCar", {
+    res.render("cars/details", {
         car: carObj
     })
 }
 
-async function getCategories(req, res) {
-    const manufacturers = await db.getAllManufacturers();
-    res.render("index", {
-        manufacturers: manufacturers
-    })
-}
-
-async function getDisplayCarsFromCategory(req, res) {
+// Display cars by category - GET method
+async function getDisplayCarsByCategory(req, res) {
     const { id } = req.params;
     const cars = await db.getAllCarsFromCategory(id);
-    res.render("viewCars", {
+    res.render("cars/view", {
         cars: cars
     })
 }
 
+// Display car details - GET method
 async function getDisplayCarDetails(req, res) {
     const { id } = req.params;
     const car = await db.viewCarDetails(id);
-    res.render('viewCar', {
+    res.render('cars/details', {
         car: car[0]
     })
 }
 
-async function getEditForm(req, res) {
+// Edit car - GET method
+async function getEditCar(req, res) {
     const { id } = req.params;
     const car = await db.viewCarDetails(id);
     const origins = await db.getAllOrigins();
     const manufacturers = await db.getAllManufacturers();
-    res.render("editCarForm", {
+    res.render("cars/edit", {
         title: "Edit car",
         car: car[0],
         origins: origins,
@@ -82,7 +71,8 @@ async function getEditForm(req, res) {
     })
 }
 
-async function postEditForm(req, res) {
+// Edit car - POST method
+async function postEditCar(req, res) {
     const { id } = req.params;
     const origins = await db.getAllOrigins();
     const manufacturers = await db.getAllManufacturers();
@@ -96,19 +86,16 @@ async function postEditForm(req, res) {
         origin_id,
         manufacturer_id
     )
-    res.redirect(`/view/${manufacturer_id}`);
+    res.redirect(`/cars/view/${manufacturer_id}`); // check
 }
 
 
 module.exports = {
-    getAddCarForm,
-    postAddCarForm,
+    getAddCar,
+    postAddCar,
     getDisplayCar,
-    getCategories,
-    getDisplayCarsFromCategory,
-    getAddCategoryForm,
-    postAddCategoryForm,
+    getDisplayCarsByCategory,
     getDisplayCarDetails,
-    getEditForm,
-    postEditForm
+    getEditCar,
+    postEditCar
 }

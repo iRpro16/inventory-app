@@ -1,21 +1,21 @@
 <html>
     <head>
-        <title>Edit Car Form</title>
+        <title>Add Car Form</title>
     </head>
     <body>
         <h2><%= title %></h2>
-        <form method="POST" action="/edit-car/<%= car.id %>">
+        <form method="POST" action="/cars/add-car"> 
             <div>
                 <label for="make">Make:</label>
-                <input name="make" placeholder="make" value="<%= car.make %>" required>
+                <input name="make" placeholder="make" required>
             </div>
             <div>
                 <label for="model">Model:</label>
-                <input name="model" placeholder="model" value="<%= car.model %>" required>
+                <input name="model" placeholder="model"required>
             </div>
             <div>
                 <label for="year">Year:</label>
-                <input name="year" placeholder="year" value="<%= car.year %>" required>
+                <input name="year" placeholder="year" required>
             </div>
             <div>
                 <label for="origins">Origins:</label>
@@ -39,6 +39,6 @@
             </div>
             <button type="submit">Submit</button>
         </form>
-        <a href="/view/<%= car.manufacturer_id %>">Go back</a>
+        <a href="/">Back to home</a>
     </body>
 </html>

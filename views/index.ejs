@@ -7,11 +7,11 @@
             <% manufacturers.forEach((manufacturer) => { %>
                 <li>
                     <%= manufacturer.manufacturer %>
-                    <a href="/view/<%= manufacturer.id %>">view</a>
+                    <a href="cars/view/<%= manufacturer.id %>">view</a>
                 </li>
             <% }) %>
         </ul>
-        <a href="/add-car">Add an item</a>
+        <a href="/cars/add-car">Add an item</a>
         <a href="/add-category">Add a category</a>
     </body>
 </html>

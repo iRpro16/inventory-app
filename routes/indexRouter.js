@@ -1,26 +1,10 @@
 const { Router } = require("express");
 const indexRouter  = Router();
-const carsController = require("../controllers/carsController");
+const carsRouter = require("./carsRouter");
+const categoriesRouter = require("./categoriesRouter");
 
 // Display all categories
-indexRouter.get("/", carsController.getCategories);
-
-// Get and Post methods for the addCarForm
-indexRouter.get("/add-car", carsController.getAddCarForm);
-indexRouter.post("/add-car", carsController.postAddCarForm);
-
-// Get and Post methods for the addCategoryForm
-indexRouter.get("/add-category", carsController.getAddCategoryForm);
-indexRouter.post("/add-category", carsController.postAddCategoryForm);
-
-// View all cars based on category id
-indexRouter.get("/view/:id", carsController.getDisplayCarsFromCategory);
-
-// View car details 
-indexRouter.get("/view-car/:id", carsController.getDisplayCarDetails);
-
-// Edit car details
-indexRouter.get("/edit-car/:id", carsController.getEditForm);
-indexRouter.post("/edit-car/:id", carsController.postEditForm);
+indexRouter.use("/", categoriesRouter);
+indexRouter.use("/cars", carsRouter);
 
 module.exports = indexRouter;
