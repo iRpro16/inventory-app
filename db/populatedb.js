@@ -28,11 +28,8 @@ const SQL = `
 async function main() {
     console.log("seeding...");
     const client = new Client({
-        host: "localhost",
-        user: "postgres",
-        database: "cars_db",
-        password: process.env.USER_PASS,
-        port: 5432
+        connectionString: process.env.DB_EXTERNAL_URL,
+        ssl: { rejectUnauthorized: false },
     });
     await client.connect();
     await client.query(SQL);
