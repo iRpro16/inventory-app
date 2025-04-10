@@ -4,6 +4,7 @@
     </head>
     <body>
         <h2><%= title %></h2>
+        <%- include("../partials/errors"); %>
         <form method="POST" action="/cars/add-car"> 
             <div>
                 <label for="make">Make:</label>

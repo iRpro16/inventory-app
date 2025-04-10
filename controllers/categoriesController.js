@@ -1,4 +1,14 @@
 const db = require("../db/queries");
+const { body, validationResult } = require("express-validator");
+
+// Error messages for add and edit forms
+const alphaErr = "must only contain letters";
+
+// Validation
+const validateUser = [
+    body("manufacturer")
+        .isAlpha('en-US', {ignore: ' '}).withMessage(`Manufacturer ${alphaErr}`),
+];
 
 // Add category - POST method
 async function getAddCategory(req, res) {
@@ -8,10 +18,23 @@ async function getAddCategory(req, res) {
 }
 
 // Add category - POST method
-async function postAddCategory(req, res) {
-    db.insertManufacturer(req.body.manufacturer);
-    res.redirect("/");
-}
+const postAddCategory = [
+    validateUser,
+    async (req, res) => {
+        const errors = validationResult(req);
+         // Handle errors
+        if (!errors.isEmpty()) {
+            return res.status(400).render("categories/add", {
+                title: "Add category",
+                errors: errors.array(),
+            });
+        }
+
+        // Insert manufacturer
+        await db.insertManufacturer(req.body.manufacturer);
+        res.redirect("/");
+    }
+]
 
 // Get categories - GET method
 async function getCategories(req, res) {

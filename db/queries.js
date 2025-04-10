@@ -99,7 +99,6 @@ async function deleteCategory(manufacturer_id) {
     await pool.query(query, [manufacturer_id]);
 }
 
-
 module.exports= {
     getAllOrigins,
     getAllManufacturers,
