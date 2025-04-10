@@ -1,18 +1,10 @@
 <html>
     <head>
         <title>Main page</title>
+        <link rel="stylesheet" href="/styles/index.css">
     </head>
     <body>
-        <ul>
-            <% manufacturers.forEach((manufacturer) => { %>
-                <li>
-                    <%= manufacturer.manufacturer %>
-                    <a href="cars/view/<%= manufacturer.id %>">view</a>
-                    <a href="/delete/<%= manufacturer.id %>">delete</a>
-                </li>
-            <% }) %>
-        </ul>
-        <a href="/cars/add-car">Add an item</a>
-        <a href="/add-category">Add a category</a>
+        <%- include("./partials/header") %>
+        <%- include("./partials/categories", {manufacturers: manufacturers}) %>
     </body>
 </html>

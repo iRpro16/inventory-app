@@ -1,0 +1,16 @@
+<div class="center-cont">
+    <div class="categories-cont">
+        <h1>All manufacturers</h1>
+        <ul class="categories">
+            <% manufacturers.forEach((manufacturer) => { %>
+                <li>
+                    <%= manufacturer.manufacturer %>
+                    <div>
+                        <a href="cars/view/<%= manufacturer.id %>">view</a>
+                        <a href="/delete/<%= manufacturer.id %>">delete</a>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+</div> 

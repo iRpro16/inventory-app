@@ -1,18 +1,24 @@
 <html>
     <head>
         <title>All cars</title>
+        <link rel="stylesheet" href="/styles/view.css">
     </head>
     <body>
-        <ul>
-            <% cars.forEach(car => { %>
-                <li>
-                    <%= car.make %>
-                    <%= car.model %>,
-                    <a href="/cars/view-car/<%= car.id %>">view</a>
-                    <a href="/cars/edit-car/<%= car.id %>">edit</a>
-                </li>
-            <% }) %>
-        </ul>
-        <a href="/">Back to home</a>
+        <%- include("../partials/header") %>
+        <div class="center-cont">
+            <div class="cars-cont">
+                <ul>
+                    <% cars.forEach(car => { %>
+                        <li>
+                            <%= car.make %>
+                            <%= car.model %>,
+                            <a href="/cars/view-car/<%= car.id %>">view</a>
+                            <a href="/cars/edit-car/<%= car.id %>">edit</a>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+            <a href="/">Back to home</a>
+        </div>
     </body>
 </html>
