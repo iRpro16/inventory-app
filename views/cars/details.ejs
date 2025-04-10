@@ -1,15 +1,19 @@
 <html>
     <head>
-        <title>View cars</title>
+        <title>Car Details</title>
+        <link rel="stylesheet" href="/styles/details.css">
     </head>
     <body>
-        <ul>
-            <li><%= car.make %></li>
-            <li><%= car.model %></li>
-            <li><%= car.year %></li>
-            <li><%= car.origin %></li>
-            <li><%= car.manufacturer %></li>
-        </ul>
-        <a href="/cars/view/<%= car.manufacturer_id %>">Go back</a>
+        <div class="card">
+            <h2>Car Details</h2>
+            <ul>
+              <li><span>Make:</span> <%= car.make %></li>
+              <li><span>Model:</span> <%= car.model %></li>
+              <li><span>Year:</span> <%= car.year %></li>
+              <li><span>Origin:</span> <%= car.origin %></li>
+              <li><span>Manufacturer:</span> <%= car.manufacturer %></li>
+            </ul>
+            <a href="/cars/view/<%= car.manufacturer_id %>">← Go back</a>
+          </div>
     </body>
 </html>

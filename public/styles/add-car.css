@@ -1,0 +1,84 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: #FAF9F6;
+}
+
+
+.center-cont {
+    color: #F3B941;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 10px solid #3B5BA5;
+    min-height: 500px;
+    width: 400px;
+    background-color: #E87A5D;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.center-cont > h2 {
+    text-align: center;
+    border-bottom: 3px solid #F3B941;
+}
+
+/* FORM */
+.form-cont > form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-cont > form > div > label {
+    font-size: 1.4em;
+}
+
+.form-cont > form > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-cont > form > div > input:nth-child(2n) {
+    height: 40px;
+    padding: 10px;
+}
+
+.form-cont > form > div > select:nth-child(2n) {
+    height: 40px;
+    padding: 10px;
+}
+
+/* BUTTON */
+.form-cont > form > button {
+    color: #F3B941;
+    height: 50px;
+    background-color: #3B5BA5;
+    border: 5px solid #F3B941;
+    border-radius: 5px;
+    font-size: 1.3em;
+}
+
+.form-cont > form > button:hover {
+    cursor: pointer;
+    border: none;
+}
+
+.form-cont > a {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #F3B941;
+}
+
+/* ERRORS */
+.errors-list {
+    padding: 0;
+    margin-left: 15px;
+    font-size: 1.2em;
+}
+.errors-list li::marker {
+    content: "* ";
+}

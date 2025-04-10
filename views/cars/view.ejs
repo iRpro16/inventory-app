@@ -7,18 +7,21 @@
         <%- include("../partials/header") %>
         <div class="center-cont">
             <div class="cars-cont">
-                <ul>
+                <h1>All cars in <%= manufacturer %></h1>
+                <ul class="cars">
                     <% cars.forEach(car => { %>
                         <li>
                             <%= car.make %>
-                            <%= car.model %>,
-                            <a href="/cars/view-car/<%= car.id %>">view</a>
-                            <a href="/cars/edit-car/<%= car.id %>">edit</a>
+                            <%= car.model %>
+                            <div>
+                                <a href="/cars/view-car/<%= car.id %>">view</a>
+                                <a href="/cars/edit-car/<%= car.id %>">edit</a>
+                            </div>
                         </li>
                     <% }) %>
                 </ul>
             </div>
-            <a href="/">Back to home</a>
+            <a href="/">← Back to home</a>
         </div>
     </body>
 </html>

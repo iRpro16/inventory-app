@@ -83,8 +83,10 @@ async function getDisplayCar(req, res) {
 async function getDisplayCarsByCategory(req, res) {
     const { id } = req.params;
     const cars = await db.getAllCarsFromCategory(id);
+    const manufacturer = await db.findManufacturer(id);
     res.render("cars/view", {
-        cars: cars
+        cars: cars,
+        manufacturer: manufacturer[0].manufacturer
     })
 }
 

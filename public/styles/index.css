@@ -24,6 +24,11 @@ header > div > a {
     color: #F3B941;
 }
 
+header > div > a:hover {
+    color: #e5a92d;
+    text-decoration: underline;
+}
+
 header > div {
     display: flex;
     gap: 20px;

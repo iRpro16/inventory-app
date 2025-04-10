@@ -22,6 +22,11 @@ header > div > a {
     color: #F3B941;
 }
 
+header > div > a:hover {
+    color: #e5a92d;
+    text-decoration: underline;
+}
+
 header > div {
     display: flex;
     gap: 20px;
@@ -38,4 +43,62 @@ header > div {
     display: flex;
     flex-direction: column;
     width: 800px;
+}
+
+.cars {
+    list-style-type: none;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cars li {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 30px;
+    color: #F3B941;
+    font-size: 1.4em;
+    font-weight: bolder;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-left: 15px solid #3B5BA5;
+}
+
+.cars-cont > h1 {
+    color: #F3B941;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #3B5BA5;
+}
+
+.cars div {
+    display: flex;
+    gap: 20px;
+}
+
+.cars a {
+    text-decoration: none;
+    color: #F3B941;
+}
+
+.cars a:hover {
+    text-decoration: underline;
+}
+
+.cars-cont > h1 {
+    color: #F3B941;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #3B5BA5;
+}
+
+.center-cont > a:nth-child(2) {
+    background-color: #F3B941;
+    padding: 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #3B5BA5;
+    font-size: 1.2em;
 }

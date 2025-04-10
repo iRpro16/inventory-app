@@ -99,6 +99,15 @@ async function deleteCategory(manufacturer_id) {
     await pool.query(query, [manufacturer_id]);
 }
 
+async function findManufacturer(manufacturer_id) {
+    let query = `
+        SELECT manufacturers.manufacturer FROM manufacturers
+        WHERE id = $1;
+    `
+    const { rows } = await pool.query(query, [manufacturer_id]);
+    return rows;
+}
+
 module.exports= {
     getAllOrigins,
     getAllManufacturers,
@@ -107,5 +116,6 @@ module.exports= {
     getAllCarsFromCategory,
     viewCarDetails,
     updateCarDetails,
-    deleteCategory
+    deleteCategory,
+    findManufacturer
 }

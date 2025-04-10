@@ -1,17 +1,22 @@
 <html>
     <head>
         <title>Add Category Form</title>
+        <link rel="stylesheet" href="/styles/add-category.css">
     </head>
     <body>
-        <h2><%= title %></h2>
-        <%- include("../partials/errors"); %>
-        <form method="POST" action="/add-category">
-            <div>
-                <label for="manufacturer">Manufacturer:</label>
-                <input type="text" name="manufacturer" required>
+        <div class="center-cont">
+            <h2><%= title %></h2>
+            <div class="form-cont">
+                <%- include("../partials/errors"); %>
+                <form method="POST" action="/add-category">
+                    <div>
+                        <label for="manufacturer">Manufacturer:</label>
+                        <input type="text" name="manufacturer" required>
+                    </div>
+                    <button type="submit">Add category</button>
+                </form>
+                <a href="/">Back to home</a>
             </div>
-            <button type="submit">Add category</button>
-        </form>
-        <a href="/">Back to home</a>
+        </div>
     </body>
 </html>
